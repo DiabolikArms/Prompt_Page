@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe Prompt Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #c76868, #fa9a00);
+      }
+
+      .container {
+        max-width: 500px;
+        margin: auto;
+        margin-bottom: 50px;
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 50px rgba(214, 100, 1, 0.3);
+      }
+
+      .container-premade-prompts {
+        max-width: 1000px;
+        margin: 50px auto;
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 0 50px rgba(214, 100, 1, 0.3);
+      }
+
+      h1 {
+        color: #000;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      label {
+        color: #777777;
+        font-weight: bold;
+      }
+
+      .form-control {
+        border-color: #ff9f6f;
+      }
+
+      .btn-primary {
+        background-color: #f39c12;
+        border-color: #f39c12;
+      }
+
+      .btn-primary:hover {
+        background-color: #f7b955;
+        border-color: #f7b955;
+      }
+
+      #recipePrompt {
+        color: #000000;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .rounded-box {
+        border-radius: 10px;
+        padding: 1.1rem;
+        margin-bottom: 20px;
+        background-color: #f7b955;
+        color: #fff;
+        transition: transform 0.3s ease;
+      }
+
+      .rounded-box:hover {
+        transform: scale(1.1);
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .col-md-4 {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+        padding: 0 15px;
+        margin-bottom: 30px;
+      }
+
+      .copy-button {
+        border-radius: 15%;
+        border-color: #f7b955;
+      }
+
+      .copy-button:hover {
+        background-color: #ffffff;
+        border-color: #000000;
+      }
+
+    .copy-prompt-button {
+      background-color: rgba(243, 156, 18, 0.8); 
+      border-color: rgba(243, 156, 18, 0.8);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      text-align: center;
+    }
+
+    .copy-prompt-button:hover {
+      background-color: rgba(247, 185, 85, 0.8); 
+      border-color: rgba(247, 185, 85, 0.8); 
+    }
+
+    #copyPromptContainer {
+      display: flex;
+      justify-content: center;
+    }
+
+      @media (max-width: 991.98px) {
+        .col-md-4 {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+        .container-premade-prompts {
+            width: 90% ;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .col-md-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .container-premade-prompts {
+            width: 90% ;
+        }
+
+        .rounded-box{
+            width: 100% !important;
+        }
+
+        .yellow-box {
+            padding: 0 !important;
+        }
+
+        .container {
+            margin-left: 20px auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-premade-prompts">
+        <h1 class="text-center">PREMADE PROMPTS</h1>
+        <div class="row">
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt1">
+                    <span class="prompt-text">Provide a small recipe or snack idea that can be made by bachelors
+                    in 10-20 minutes and does not require much effort.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt1')">Copy</button>
+                </div>
+              </div>
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt2">
+                    <span class="prompt-text">Generate a recipe using minimal ingredients that can be prepared
+                    quickly and with minimal requirement of utensils and equipments and is suitable for bachelors.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt2')">Copy</button>
+                </div>
+              </div>
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt3">
+                    <span class="prompt-text">Suggest a simple salad recipe using the provided ingredients that
+                    can be made within 10-20 minutes.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt3')">Copy</button>
+                </div>
+              </div>
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt4">
+                    <span class="prompt-text">Share a sandwich recipe that can be prepared quickly and requires
+                    the given ingredients.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt4')">Copy</button>
+                </div>
+              </div>
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt5">
+                    <span class="prompt-text">Provide a snack idea using the provided ingredients that is easy
+                    to make and can be prepared within 10-20 minutes.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt5')">Copy</button>
+                </div>
+              </div>
+              <div class="col-md-4 yellow-box">
+                <div class="rounded-box">
+                  <h5 id="prompt6">
+                    <span class="prompt-text">Give me a recipe that can be easily made by bachelors for snacks within 10-20 minutes and has a good amount of nutritional value.</span>
+                  </h5>
+                  <button class="copy-button" onclick="copyToClipboard('prompt5')">Copy</button>
+                </div>
+              </div>
+              
+
+        </div>
+      </div>
+    <div class="container">
+      <h1>Recipe Prompt Generator</h1>
+      <form id="recipeForm">
+        <div class="form-group">
+          <label for="ingredient1">Ingredient 1:</label>
+          <input type="text" class="form-control" id="ingredient1" required />
+        </div>
+        <div class="form-group">
+          <label for="ingredient2">Ingredient 2:</label>
+          <input type="text" class="form-control" id="ingredient2" required />
+        </div>
+        <div class="form-group">
+          <label for="ingredient3">Ingredient 3:</label>
+          <input type="text" class="form-control" id="ingredient3" required />
+        </div>
+        <div class="form-group">
+          <label for="ingredient4">Ingredient 4:</label>
+          <input type="text" class="form-control" id="ingredient4" required />
+        </div>
+        <div class="form-group">
+          <label for="ingredient5">Ingredient 5:</label>
+          <input type="text" class="form-control" id="ingredient5" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Recipe</button>
+      </form>
+      <div id="recipePrompt" class="mt-4"></div>
+      <div id="copyPromptContainer" class="text-center mt-2"> 
+        <button class="copy-prompt-button" onclick="copyGeneratedPrompt()">Copy Prompt</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        function copyToClipboard(promptId) {
+          const promptText = document.getElementById(promptId).querySelector(".prompt-text").innerText;
+          const el = document.createElement("textarea");
+          el.value = promptText;
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand("copy");
+          document.body.removeChild(el);
+          alert(
+            "Prompt copied to clipboard! Go to Chat Gpt and paste it there to enjoy the custom AI-made recipe."
+          );
+        }
+
+        function copyGeneratedPrompt() {
+            const generatedPrompt = document.getElementById("recipePrompt").innerText;
+            const el = document.createElement("textarea");
+            el.value = generatedPrompt;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand("copy");
+            document.body.removeChild(el);
+            alert("Generated prompt copied to clipboard!");
+        }
+
+        // Show the "Copy Prompt" button when the prompt is generated
+        function showCopyPromptButton() {
+            const copyPromptButton = document.querySelector(".copy-prompt-button");
+            copyPromptButton.style.display = "block";
+        }
+      
+        document
+          .getElementById("recipeForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            var ingredient1 = document.getElementById("ingredient1").value;
+            var ingredient2 = document.getElementById("ingredient2").value;
+            var ingredient3 = document.getElementById("ingredient3").value;
+            var ingredient4 = document.getElementById("ingredient4").value;
+            var ingredient5 = document.getElementById("ingredient5").value;
+      
+            var recipePrompt = `Please provide a simple recipe which uses the following ingredients: ${ingredient1}, ${ingredient2}, ${ingredient3}, ${ingredient4}, ${ingredient5}. Make sure this recipe is simple and can be made within 20 minutes at most. Also, make sure that you provide all the steps involved in making this recipe and necessary side ingredients including the utensils.`;
+      
+            document.getElementById("recipePrompt").innerText = recipePrompt;
+
+            showCopyPromptButton();
+          });
+      </script>      
+  </body>
+</html>
