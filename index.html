@@ -9,9 +9,10 @@
     />
     <style>
       body {
-        background: linear-gradient(135deg, #c76868, #fa9a00);
+        background-color: white;
+        color: #333;
       }
-
+    
       .container {
         max-width: 500px;
         margin: auto;
@@ -19,200 +20,251 @@
         background-color: rgba(255, 255, 255, 0.5);
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 0 50px rgba(214, 100, 1, 0.3);
+        box-shadow: 0 0 50px rgba(231, 120, 253, 0.3);
       }
-
+    
       .container-premade-prompts {
         max-width: 1000px;
         margin: 50px auto;
         background-color: rgba(255, 255, 255, 0.5);
         padding: 50px;
         border-radius: 15px;
-        box-shadow: 0 0 50px rgba(214, 100, 1, 0.3);
+        box-shadow: 0 0 50px rgba(231, 120, 253, 0.3);;
       }
-
+    
       h1 {
         color: #000;
         text-align: center;
         margin-bottom: 30px;
       }
-
+    
       label {
         color: #777777;
         font-weight: bold;
       }
-
+    
       .form-control {
-        border-color: #ff9f6f;
+        border-color: #dd6fff;
       }
-
+    
       .btn-primary {
-        background-color: #f39c12;
-        border-color: #f39c12;
+        background-color: #c4abf1; /* Change the background color to light purple */
+        border-color: #b19cd9; /* Change the border color to light purple */
       }
-
+    
       .btn-primary:hover {
-        background-color: #f7b955;
-        border-color: #f7b955;
+        background-color: rgba(207, 186, 227, 0.8); /* Change the background color on hover to a darker shade of light purple */
+        border-color: rgba(207, 186, 227, 0.8); /* Change the border color on hover to a darker shade of light purple */
       }
-
+    
       #recipePrompt {
         color: #000000;
         font-weight: bold;
         margin-top: 20px;
       }
+    
       .rounded-box {
         border-radius: 10px;
         padding: 1.1rem;
         margin-bottom: 20px;
-        background-color: #f7b955;
+        background: linear-gradient(135deg, #c2a1ff, #f7d7f9); /* Change the background color to light purple */
         color: #fff;
         transition: transform 0.3s ease;
       }
-
+    
       .rounded-box:hover {
         transform: scale(1.1);
       }
-
+    
       .row {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
       }
-
+    
       .col-md-4 {
         flex: 0 0 33.33%;
         max-width: 33.33%;
         padding: 0 15px;
         margin-bottom: 30px;
       }
-
+    
       .copy-button {
-        border-radius: 15%;
-        border-color: #f7b955;
+        border-radius: 10%;
+        border-color: #b19cd9; /* Change the border color to light purple */
+      }
+      .copy-button strong {
+        font-weight: bold;
       }
 
+    
+      .copy-prompt-button,
+      .go-to-chat-button {
+        display: none;
+      }
+    
       .copy-button:hover {
         background-color: #ffffff;
         border-color: #000000;
       }
-
-    .copy-prompt-button {
-      background-color: rgba(243, 156, 18, 0.8); 
-      border-color: rgba(243, 156, 18, 0.8);
-      color: #ffffff;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      display: none;
-      text-align: center;
-    }
-
-    .copy-prompt-button:hover {
-      background-color: rgba(247, 185, 85, 0.8); 
-      border-color: rgba(247, 185, 85, 0.8); 
-    }
-
-    #copyPromptContainer {
-      display: flex;
-      justify-content: center;
-    }
-
+    
+      .copy-prompt-button {
+        background-color: rgba(177, 156, 217, 0.8); /* Change the background color to a shade of light purple */
+        border-color: rgba(177, 156, 217, 0.8); /* Change the border color to a shade of light purple */
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+      }
+    
+      .copy-prompt-button:hover {
+        background-color: rgba(207, 186, 227, 0.8); /* Change the background color on hover to a darker shade of light purple */
+        border-color: rgba(207, 186, 227, 0.8); /* Change the border color on hover to a darker shade of light purple */
+      }
+    
+      #copyPromptContainer {
+        display: flex;
+        justify-content: center;
+      }
+    
       @media (max-width: 991.98px) {
         .col-md-4 {
           flex: 0 0 50%;
           max-width: 50%;
         }
         .container-premade-prompts {
-            width: 90% ;
+          width: 90%;
         }
       }
-
+    
       @media (max-width: 767.98px) {
         .col-md-4 {
           flex: 0 0 100%;
           max-width: 100%;
         }
-
+    
         .container-premade-prompts {
-            width: 90% ;
+          width: 90%;
         }
-
-        .rounded-box{
-            width: 100% !important;
+    
+        .rounded-box {
+          width: 100% !important;
         }
-
+    
         .yellow-box {
-            padding: 0 !important;
+          padding: 0 !important;
         }
-
+    
         .container {
-            margin-left: 20px auto !important;
+          margin-left: 20px auto !important;
+        }
+    
+        #openAIButton {
+          position: absolute;
+          top: 20px;
+          right: 20px;
         }
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19"></script>
   </head>
   <body>
     <div class="container-premade-prompts">
-        <h1 class="text-center">PREMADE PROMPTS</h1>
-        <div class="row">
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt1">
-                    <span class="prompt-text">Provide a small recipe or snack idea that can be made by bachelors
-                    in 10-20 minutes and does not require much effort.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt1')">Copy</button>
-                </div>
-              </div>
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt2">
-                    <span class="prompt-text">Generate a recipe using minimal ingredients that can be prepared
-                    quickly and with minimal requirement of utensils and equipments and is suitable for bachelors.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt2')">Copy</button>
-                </div>
-              </div>
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt3">
-                    <span class="prompt-text">Suggest a simple salad recipe using the provided ingredients that
-                    can be made within 10-20 minutes.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt3')">Copy</button>
-                </div>
-              </div>
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt4">
-                    <span class="prompt-text">Share a sandwich recipe that can be prepared quickly and requires
-                    the given ingredients.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt4')">Copy</button>
-                </div>
-              </div>
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt5">
-                    <span class="prompt-text">Provide a snack idea using the provided ingredients that is easy
-                    to make and can be prepared within 10-20 minutes.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt5')">Copy</button>
-                </div>
-              </div>
-              <div class="col-md-4 yellow-box">
-                <div class="rounded-box">
-                  <h5 id="prompt6">
-                    <span class="prompt-text">Give me a recipe that can be easily made by bachelors for snacks within 10-20 minutes and has a good amount of nutritional value.</span>
-                  </h5>
-                  <button class="copy-button" onclick="copyToClipboard('prompt5')">Copy</button>
-                </div>
-              </div>
-              
-
+      <h1 class="text-center">PREMADE PROMPTS</h1>
+      <div class="row">
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt1">
+              <span class="prompt-text"
+                >Provide a small recipe or snack idea that can be made by
+                bachelors in 10-20 minutes and does not require much
+                effort.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt1')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>            
+          </div>
+        </div>
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt2">
+              <span class="prompt-text"
+                >Generate a recipe using minimal ingredients that can be
+                prepared quickly and with minimal requirement of utensils and
+                equipments and is suitable for bachelors.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt2')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt3">
+              <span class="prompt-text"
+                >Suggest a simple salad recipe using the provided ingredients
+                that can be made within 10-20 minutes.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt3')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt4">
+              <span class="prompt-text"
+                >Share a sandwich recipe that can be prepared quickly and
+                requires the given ingredients.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt4')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt5">
+              <span class="prompt-text"
+                >Provide a snack idea using the provided ingredients that is
+                easy to make and can be prepared within 10-20 minutes.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt5')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4 yellow-box">
+          <div class="rounded-box">
+            <h5 id="prompt6">
+              <span class="prompt-text"
+                >Give me a recipe that can be easily made by bachelors for
+                snacks within 10-20 minutes and has a good amount of nutritional
+                value.</span
+              >
+            </h5>
+            <button class="copy-button" onclick="copyToClipboard('prompt5')" style="font-weight: bold; color: rgb(99, 97, 97);">
+              COPY
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <a
+            href="https://chat.openai.com/"
+            target="_blank"
+            class="btn btn-primary btn-block"
+            >Go to Chat GPT</a
+          >
         </div>
       </div>
+    </div>
     <div class="container">
       <h1>Recipe Prompt Generator</h1>
       <form id="recipeForm">
@@ -239,59 +291,81 @@
         <button type="submit" class="btn btn-primary">Generate Recipe</button>
       </form>
       <div id="recipePrompt" class="mt-4"></div>
-      <div id="copyPromptContainer" class="text-center mt-2"> 
-        <button class="copy-prompt-button" onclick="copyGeneratedPrompt()">Copy Prompt</button>
+      <div id="copyPromptContainer" class="text-center mt-2">
+        <button class="copy-prompt-button" onclick="copyGeneratedPrompt()">
+          Copy Prompt
+        </button>
+      </div>
+      <div class="col-md-12 text-center mt-2">
+        <a
+          href="https://chat.openai.com/"
+          target="_blank"
+          class="btn btn-primary go-to-chat-button"
+          >Go to Chat GPT</a
+        >
+      </div>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
     <script>
-        function copyToClipboard(promptId) {
-          const promptText = document.getElementById(promptId).querySelector(".prompt-text").innerText;
-          const el = document.createElement("textarea");
-          el.value = promptText;
-          document.body.appendChild(el);
-          el.select();
-          document.execCommand("copy");
-          document.body.removeChild(el);
-          alert(
-            "Prompt copied to clipboard! Go to Chat Gpt and paste it there to enjoy the custom AI-made recipe."
-          );
+      function copyToClipboard(promptId) {
+        const promptText = document
+          .getElementById(promptId)
+          .querySelector(".prompt-text").innerText;
+        const el = document.createElement("textarea");
+        el.value = promptText;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        swal.fire({
+          icon: "success",
+          title: "Prompt copied to clipboard!",
+          text: "Go to Chat Gpt and paste it there to enjoy the custom AI-made recipe.",
+        });
         }
 
-        function copyGeneratedPrompt() {
-            const generatedPrompt = document.getElementById("recipePrompt").innerText;
-            const el = document.createElement("textarea");
-            el.value = generatedPrompt;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand("copy");
-            document.body.removeChild(el);
-            alert("Generated prompt copied to clipboard!");
-        }
 
-        // Show the "Copy Prompt" button when the prompt is generated
-        function showCopyPromptButton() {
-            const copyPromptButton = document.querySelector(".copy-prompt-button");
-            copyPromptButton.style.display = "block";
-        }
-      
-        document
-          .getElementById("recipeForm")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            var ingredient1 = document.getElementById("ingredient1").value;
-            var ingredient2 = document.getElementById("ingredient2").value;
-            var ingredient3 = document.getElementById("ingredient3").value;
-            var ingredient4 = document.getElementById("ingredient4").value;
-            var ingredient5 = document.getElementById("ingredient5").value;
-      
-            var recipePrompt = `Please provide a simple recipe which uses the following ingredients: ${ingredient1}, ${ingredient2}, ${ingredient3}, ${ingredient4}, ${ingredient5}. Make sure this recipe is simple and can be made within 20 minutes at most. Also, make sure that you provide all the steps involved in making this recipe and necessary side ingredients including the utensils.`;
-      
-            document.getElementById("recipePrompt").innerText = recipePrompt;
+      function copyGeneratedPrompt() {
+        const generatedPrompt =
+          document.getElementById("recipePrompt").innerText;
+        const el = document.createElement("textarea");
+        el.value = generatedPrompt;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        swal.fire({
+          icon: "success",
+          title: "Generated prompt copied to clipboard!",
+          text: "Go to Chat Gpt and paste it there to enjoy the custom AI-made recipe.",
+        });
+      }
 
-            showCopyPromptButton();
-          });
-      </script>      
+      // Show the "Copy Prompt" button when the prompt is generated
+      function showButtons() {
+        const copyPromptButton = document.querySelector(".copy-prompt-button");
+        const goToChatButton = document.querySelector(".go-to-chat-button");
+        copyPromptButton.style.display = "block";
+        goToChatButton.style.display = "block";
+      }
+
+      document
+        .getElementById("recipeForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var ingredient1 = document.getElementById("ingredient1").value;
+          var ingredient2 = document.getElementById("ingredient2").value;
+          var ingredient3 = document.getElementById("ingredient3").value;
+          var ingredient4 = document.getElementById("ingredient4").value;
+          var ingredient5 = document.getElementById("ingredient5").value;
+
+          var recipePrompt = `Please provide a simple recipe which uses the following ingredients: ${ingredient1}, ${ingredient2}, ${ingredient3}, ${ingredient4}, ${ingredient5}. Make sure this recipe is simple and can be made within 20 minutes at most. Also, make sure that you provide all the steps involved in making this recipe and necessary side ingredients including the utensils.`;
+
+          document.getElementById("recipePrompt").innerText = recipePrompt;
+          showButtons(); 
+        });
+    </script>
   </body>
 </html>
